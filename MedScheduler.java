@@ -10,21 +10,23 @@ public class MedScheduler {
 
     public static void main(String[] args) {
 
-     	LocalDate localDate = LocalDate.now();
-     	System.out.println(localDate);
+    	int numMed, gapDays;
 
-        Scanner myObj = new Scanner(System.in);
-        System.out.println("Enter number of days medicine to be taken: ");
+     	LocalDate localDate = LocalDate.now();												// Entering todays date
 
-        int date = myObj.nextInt();
+        Scanner myObj = new Scanner(System.in);												// Prompts user to enter amount of days medicine to be taken
+        System.out.print("Enter amount of medicine to be taken: ");
+        numMed = myObj.nextInt();
 
         myObj = new Scanner(System.in);
-        System.out.println("Enter the gap between days medicine needs to be taken: ");
+        System.out.print("Enter number of days between each medicine: ");					// Prompts user to enter the gap between each medicine
+        gapDays = myObj.nextInt();
+
         myObj.close();
 
-        date = dateFunction(date);
-        System.out.println("Date: " + date);
-
+        System.out.println("Todays date: " + localDate);
+        System.out.println("Number of medicines to be taken: " + numMed);
+        System.out.println("Gap between each medicines: " + gapDays);
     }
 
     public static int dateFunction(int date) {
