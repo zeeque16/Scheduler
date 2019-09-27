@@ -24,16 +24,16 @@ public class MedScheduler {
 
         myObj.close();
 
-        System.out.println("Todays date: " + localDate);
-        System.out.println("Number of medicines to be taken: " + numMed);
-        System.out.println("Gap between each medicines: " + gapDays);
+        schedulerFunc(numMed, gapDays, localDate);
+
+        // System.out.println("Todays date: " + localDate);
+        // System.out.println("Number of medicines to be taken: " + numMed);
+        // System.out.println("Gap between each medicines: " + gapDays);
     }
 
-    public static int dateFunction(int date) {
-        int temp = 0;
+    public static void schedulerFunc(int numMed, int gapDays, LocalDate todayDate) {
+        int todayDay = todayDate.getDayOfMonth();
+        int todayMonth = todayDate.getMonthValue();
 
-        temp = date + 7;
-
-        return temp;
     }
 }
