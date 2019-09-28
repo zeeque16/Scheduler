@@ -33,20 +33,22 @@ public class MedScheduler {
         	enterDate = LocalDate.now();												// Entering todays date
         } else {
         	String tempInp;
-        	System.out.print("Enter starting date (yyyy/MM/dd): ");
-        	tempInp = myObj.nextLine();
+        	do {
+        		System.out.print("Enter starting date (yyyy/MM/dd): ");
+        		tempInp = myObj.nextLine();
+        	} while (!((tempInp.substring(4, 5)).equals("/") && (tempInp.substring(7, 8)).equals("/")));
 
         	enterDate = LocalDate.parse(tempInp, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         }
 
         myObj.close();
 
-        System.out.println("Question about todays date: " + dateQue);
-        System.out.println("Todays date: " + enterDate);
-        System.out.println("Number of medicines to be taken: " + numMed);
-        System.out.println("Gap between each medicines: " + gapDays);
+        // System.out.println("Question about todays date: " + dateQue);
+        // System.out.println("Todays date: " + enterDate);
+        // System.out.println("Number of medicines to be taken: " + numMed);
+        // System.out.println("Gap between each medicines: " + gapDays);
 
-        // schedulerFunc(numMed, gapDays, localDate);
+        schedulerFunc(numMed, gapDays, enterDate);
 
         // testFunc();
     }
@@ -58,7 +60,8 @@ public class MedScheduler {
     	ArrayList<Integer> medDates = new ArrayList<Integer>();
 
     	int tempDates = todayDay;
-    	for  (int count = 0; count < numMed; ++count) {
+    	medDates.add(tempDates);
+    	for  (int count = 0; count < (numMed - 1); ++count) {
     		tempDates = tempDates + gapDays;
     		if (tempDates > 31 && ((todayMonth % 2 != 0) ? ((todayMonth < 8) ? true : false) : ((todayMonth % 2 == 0) ? ((todayMonth > 7 && todayMonth < 13) ? true : false) : false))) {
     			tempDates -= 31;
@@ -71,7 +74,6 @@ public class MedScheduler {
     		if (todayMonth > 12) 
     			todayMonth = 1;
     		medDates.add(tempDates);
-    		System.out.println(count + ": todayMonth: " + todayMonth);
     	}
 
     	for (int count = 0; count < medDates.size(); ++count)
