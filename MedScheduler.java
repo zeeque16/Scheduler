@@ -12,8 +12,8 @@ public class MedScheduler {
 	public static void main(String[] args) {
 
 		int numMed, gapDays;
-
-     	LocalDate localDate = LocalDate.now();												// Entering todays date
+		String dateQue;
+		LocalDate enterDate;		
 
         Scanner myObj = new Scanner(System.in);												// Prompts user to enter amount of days medicine to be taken
         System.out.print("Enter amount of medicine to be taken: ");
@@ -23,13 +23,30 @@ public class MedScheduler {
         System.out.print("Enter number of days between each medicine: ");					// Prompts user to enter the gap between each medicine
         gapDays = myObj.nextInt();
 
+        do {
+        	myObj = new Scanner(System.in);
+        	System.out.print("Does your medication course starts from today? (y/n) ");
+        	dateQue = myObj.nextLine();
+        } while (!(dateQue.equals("y") || dateQue.equals("Y") || dateQue.equals("n") || dateQue.equals("N")));        
+
+        if (dateQue.equals("y") || dateQue.equals("Y")) {
+        	enterDate = LocalDate.now();												// Entering todays date
+        } else {
+        	String tempInp;
+        	System.out.print("Enter starting date (yyyy/MM/dd): ");
+        	tempInp = myObj.nextLine();
+
+        	enterDate = LocalDate.parse(tempInp, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        }
+
         myObj.close();
 
-        System.out.println("Todays date: " + localDate);
+        System.out.println("Question about todays date: " + dateQue);
+        System.out.println("Todays date: " + enterDate);
         System.out.println("Number of medicines to be taken: " + numMed);
         System.out.println("Gap between each medicines: " + gapDays);
 
-        schedulerFunc(numMed, gapDays, localDate);
+        // schedulerFunc(numMed, gapDays, localDate);
 
         // testFunc();
     }
